@@ -12,7 +12,7 @@ public class Main {
 
     /**
      * Arranca la aplicación.
-     *
+     **
      * @param args operación y parámetros, por ejemplo {"-listar"}
      */
     public static void main(String[] args) {
