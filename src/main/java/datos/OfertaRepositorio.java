@@ -35,7 +35,17 @@ public class OfertaRepositorio {
      * @return lista de candidaturas
      * @throws IOException si no se puede leer el archivo
      */
+    public List<Oferta> leerTodas() throws IOException {
+        return leer(ruta);
+    }
 
+    /**
+     * Lee las candidaturas de otro archivo CSV indicado por su ruta.
+     *
+     * @param rutaArchivo ruta del archivo CSV a leer
+     * @return lista de candidaturas del archivo
+     * @throws IOException si no se puede leer el archivo
+     */
     public List<Oferta> leerDesde(String rutaArchivo) throws IOException {
         return leer(Path.of(rutaArchivo));
     }
