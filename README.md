@@ -6,22 +6,22 @@ Aplicación Java para gestionar candidaturas laborales desde la línea de comand
 
 ## Tecnologías utilizadas
 
-| Tecnología | Uso |
-|---|---|
-| Java 24 | Lenguaje |
-| Maven | Gestión del proyecto y compilación |
-| Archivo CSV (separador `;`) | Persistencia en v1.0, sin base de datos |
-| Figma | Prototipo interactivo y Manual de estilo |
+| Tecnología                  | Uso                                      |
+|-----------------------------|------------------------------------------|
+| Java 25                     | Lenguaje                                 |
+| Maven                       | Gestión del proyecto y compilación       |
+| Archivo CSV (separador `;`) | Persistencia en v1.0, sin base de datos  |
+| Figma                       | Prototipo interactivo y Manual de estilo |
 
 ## Arquitectura
 
 Tres capas. Cada capa solo llama a la de debajo.
 
-| Capa | Paquete | Clases |
-|---|---|---|
-| Presentación | `com.tracker.presentacion` | `ConsolaCli` |
-| Negocio | `com.tracker.negocio` | `OfertaNegocio` |
-| Datos | `com.tracker.datos` | `Oferta`, `OfertaRepositorio` |
+| Capa         | Paquete                    | Clases                        |
+|--------------|----------------------------|-------------------------------|
+| Presentación | `com.tracker.presentacion` | `ConsolaCli`                  |
+| Negocio      | `com.tracker.negocio`      | `OfertaNegocio`               |
+| Datos        | `com.tracker.datos`        | `Oferta`, `OfertaRepositorio` |
 
 `Main` solo arranca el programa.
 
@@ -38,14 +38,14 @@ Los datos se guardan en `data/candidaturas.csv`. Cada ejecución hace una operac
 
 ## Comandos
 
-| Comando | Qué hace |
-|---|---|
-| `-listar` | Lista todas las candidaturas |
-| `-listar --estado pendiente --empresa Indra` | Filtra por estado y/o empresa |
-| `-añadir --titulo "Dev Java" --empresa Indra --estado pendiente --fecha 15/09/2026` | Añade una candidatura |
-| `-ver 13` | Muestra los detalles de la candidatura con ID 13 |
-| `-borrar 13` | Elimina la candidatura con ID 13 |
-| `-importar candidaturas.csv` | Importa candidaturas desde otro CSV |
+| Comando                                                                             | Qué hace                                         |
+|-------------------------------------------------------------------------------------|--------------------------------------------------|
+| `-listar`                                                                           | Lista todas las candidaturas                     |
+| `-listar --estado pendiente --empresa Indra`                                        | Filtra por estado y/o empresa                    |
+| `-añadir --titulo "Dev Java" --empresa Indra --estado pendiente --fecha 15/09/2026` | Añade una candidatura                            |
+| `-ver 13`                                                                           | Muestra los detalles de la candidatura con ID 13 |
+| `-borrar 13`                                                                        | Elimina la candidatura con ID 13                 |
+| `-importar candidaturas.csv`                                                        | Importa candidaturas desde otro CSV              |
 
 Estados posibles: `pendiente`, `entrevista`, `rechazado`, `aceptado`. Fechas en formato `dd/MM/yyyy`.
 
@@ -62,9 +62,9 @@ id;titulo;empresa;estado;fechaPostulacion;enlace;notas
 
 ## Datos de prueba
 
-CSV de 15 candidaturas generado con IA a partir del prompt del enunciado: [`data/candidaturas.csv`](data/candidaturas.csv)
+CSV de 15 candidaturas generado con IA a partir del prompt
 
 ## Diseño
 
-- Prototipo de Figma (solo lectura): [PEGAR AQUÍ EL ENLACE]
-- Manual de estilo y assets de diseño: [`docs/`](docs/)
+- Prototipo de Figma (solo lectura): PONER URL DE FIGMA
+- Manual de estilo y assets de diseño
