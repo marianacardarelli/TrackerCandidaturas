@@ -59,20 +59,20 @@ public class ComandosTerminal {
             mostrarError("El ID debe ser un número. Ejemplo: -ver 13");
         } catch (IllegalArgumentException e) {
             mostrarError(e.getMessage());
-        } catch (IOException e) {
-            mostrarError("No se encuentra o no se puede leer el archivo: " + e.getMessage());
         }
     }
 
-    //quitar el ultimo catch y ponerlo en lo de archivos, estoy emzclando interfaz con archivos
-
-    private void listar(String[] args) throws IOException {
+    private void listar(String[] args) {
         String estado = obtenerOpcion(args, "--estado");
         String empresa = obtenerOpcion(args, "--empresa");
-        mostrarLista(negocio.listar(estado, empresa));
+        try {
+            mostrarLista(negocio.listar(estado, empresa));
+        } catch (IOException e) {
+            mostrarError("No se puede leer el archivo de candidaturas: " + e.getMessage());
+        }
     }
 
-    private void añadir(String[] args) throws IOException {
+    private void añadir(String[] args) {
         String titulo = obtenerOpcion(args, "--titulo");
         String empresa = obtenerOpcion(args, "--empresa");
         String estado = obtenerOpcion(args, "--estado");
@@ -82,44 +82,60 @@ public class ComandosTerminal {
                     + "--estado pendiente --fecha 15/09/2026");
             return;
         }
-        negocio.añadir(titulo, empresa, estado, fecha);
-        System.out.println("Candidatura añadida.");
+        try {
+            negocio.añadir(titulo, empresa, estado, fecha);
+            System.out.println("Candidatura añadida.");
+        } catch (IOException e) {
+            mostrarError("No se puede leer o escribir el archivo: " + e.getMessage());
+        }
     }
 
-    private void ver(String[] args) throws IOException {
+    private void ver(String[] args) {
         if (args.length < 2) {
             mostrarError("Falta el ID. Ejemplo: -ver 13");
             return;
         }
         long id = Long.parseLong(args[1]);
-        Oferta oferta = negocio.ver(id);
-        if (oferta == null) {
-            mostrarError("No existe ninguna candidatura con ID " + id);
-            return;
+        try {
+            Oferta oferta = negocio.ver(id);
+            if (oferta == null) {
+                mostrarError("No existe ninguna candidatura con ID " + id);
+                return;
+            }
+            mostrarDetalle(oferta);
+        } catch (IOException e) {
+            mostrarError("No se puede leer el archivo de candidaturas: " + e.getMessage());
         }
-        mostrarDetalle(oferta);
     }
 
-    private void borrar(String[] args) throws IOException {
+    private void borrar(String[] args) {
         if (args.length < 2) {
             mostrarError("Falta el ID. Ejemplo: -borrar 13");
             return;
         }
         long id = Long.parseLong(args[1]);
-        if (negocio.borrar(id)) {
-            System.out.println("Candidatura " + id + " eliminada.");
-        } else {
-            mostrarError("No existe ninguna candidatura con ID " + id);
+        try {
+            if (negocio.borrar(id)) {
+                System.out.println("Candidatura " + id + " eliminada.");
+            } else {
+                mostrarError("No existe ninguna candidatura con ID " + id);
+            }
+        } catch (IOException e) {
+            mostrarError("No se puede leer o escribir el archivo: " + e.getMessage());
         }
     }
 
-    private void importar(String[] args) throws IOException {
+    private void importar(String[] args) {
         if (args.length < 2) {
             mostrarError("Falta el archivo. Ejemplo: -importar candidaturas.csv");
             return;
         }
-        negocio.importar(args[1]);
-        System.out.println("Candidaturas importadas desde " + args[1]);
+        try {
+            negocio.importar(args[1]);
+            System.out.println("Candidaturas importadas desde " + args[1]);
+        } catch (IOException e) {
+            mostrarError("No se encuentra o no se puede leer el archivo: " + e.getMessage());
+        }
     }
 
     /**
