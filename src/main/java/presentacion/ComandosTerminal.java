@@ -64,6 +64,8 @@ public class ComandosTerminal {
         }
     }
 
+    //quitar el ultimo catch y ponerlo en lo de archivos, estoy emzclando interfaz con archivos
+
     private void listar(String[] args) throws IOException {
         String estado = obtenerOpcion(args, "--estado");
         String empresa = obtenerOpcion(args, "--empresa");

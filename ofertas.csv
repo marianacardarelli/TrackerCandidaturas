@@ -1,16 +1,1 @@
 id;titulo;empresa;estado;fechaPostulacion;enlace;notas
-1;Desarrollador Java;Indra;rechazado;03/08/2026;https://www.indracompany.com/es/empleo;Rechazado por falta de experiencia previa
-2;Desarrollador Backend Junior;Accenture;entrevista;07/08/2026;https://www.accenture.com/es-es/careers;Entrevista técnica realizada y pendiente de respuesta
-3;Analista Programador;Telefónica;aceptado;12/08/2026;https://www.telefonica.com/es/trabaja-con-nosotros;Oferta aceptada con incorporación en septiembre
-4;Desarrollador Full Stack;Capgemini;rechazado;18/08/2026;https://www.capgemini.com/es-es/carreras;Piden más de dos años de experiencia
-5;Programador Java Junior;BBVA;entrevista;25/08/2026;https://www.bbva.com/es/trabaja-con-nosotros;Segunda entrevista con el equipo técnico
-6;Desarrollador de Aplicaciones Móviles;Indra;pendiente;02/09/2026;https://www.indracompany.com/es/empleo;CV enviado por LinkedIn
-7;Técnico de Desarrollo de Software;Accenture;rechazado;09/09/2026;https://www.accenture.com/es-es/careers;Proceso cerrado sin entrevista
-8;Desarrollador Frontend;Telefónica;entrevista;15/09/2026;https://www.telefonica.com/es/trabaja-con-nosotros;Primera entrevista con recursos humanos
-9;Desarrollador Java;BBVA;aceptado;21/09/2026;https://www.bbva.com/es/trabaja-con-nosotros;Contrato de prácticas confirmado
-10;Ingeniero de Software Junior;Capgemini;pendiente;28/09/2026;https://www.capgemini.com/es-es/carreras;Esperando respuesta tras enviar la prueba técnica
-11;Desarrollador Backend;Indra;rechazado;05/10/2026;https://www.indracompany.com/es/empleo;Han elegido a otro candidato
-12;Programador Web;Accenture;pendiente;09/10/2026;https://www.accenture.com/es-es/careers;Solicitud enviada desde su web
-13;Desarrollador Java Junior;Telefónica;entrevista;13/10/2026;https://www.telefonica.com/es/trabaja-con-nosotros;Entrevista online programada para la semana próxima
-14;Analista de Datos Junior;BBVA;pendiente;19/10/2026;https://www.bbva.com/es/trabaja-con-nosotros;Contacto por LinkedIn
-15;Desarrollador Full Stack Junior;Capgemini;aceptado;22/10/2026;https://www.capgemini.com/es-es/carreras;Oferta aceptada y pendiente de firmar el contrato
