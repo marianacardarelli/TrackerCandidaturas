@@ -19,7 +19,7 @@ Tres capas. Cada capa solo llama a la de debajo.
 
 | Capa         | Paquete                    | Clases                        |
 |--------------|----------------------------|-------------------------------|
-| Presentación | `com.tracker.presentacion` | `ConsolaCli`                  |
+| Presentación | `com.tracker.presentacion` | `ComandosTerminal`            |
 | Negocio      | `com.tracker.negocio`      | `OfertaNegocio`               |
 | Datos        | `com.tracker.datos`        | `Oferta`, `OfertaRepositorio` |
 
@@ -34,7 +34,7 @@ mvn clean package
 java -cp target/classes com.tracker.Main -listar
 ```
 
-Los datos se guardan en `data/candidaturas.csv`. Cada ejecución hace una operación y termina (no hay menú interactivo).
+Los datos se guardan en `ofertas.csv`. Cada ejecución hace una operación y termina (no hay menú interactivo).
 
 ## Comandos
 
@@ -66,5 +66,5 @@ CSV de 15 candidaturas generado con IA a partir del prompt
 
 ## Diseño
 
-- Prototipo de Figma (solo lectura): PONER URL DE FIGMA
+- Prototipo de Figma (solo lectura): https://www.figma.com/design/o6q6eRuSD1RB9p3rkg479i/Sin-t%C3%ADtulo?node-id=0-1&t=B3MGt85trtYnlHAV-1
 - Manual de estilo y assets de diseño
