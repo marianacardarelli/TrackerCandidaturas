@@ -1,6 +1,7 @@
 import data.*;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import service.OfertaService;
 
 import java.io.IOException;
 
@@ -13,8 +14,5 @@ public class AppTracker extends Application {
     public void start(Stage stage) throws IOException {
         DataBaseInitializer.initialize(DataSourceFactory.getDataSource());
         DataBaseInitializer.loadData(DataSourceFactory.getDataSource());
-        new EntrevistaJdbcDAO(DataSourceFactory.getDataSource())
-                .findAll()
-                .forEach(System.out::println);
     }
 }
