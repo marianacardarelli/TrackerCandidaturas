@@ -1,0 +1,20 @@
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+/**
+ * Aplicación JavaFX del Tracker de Candidaturas. Abre la ventana con el listado de ofertas.
+ */
+public class AppTracker extends Application {
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader cargador = new FXMLLoader(AppTracker.class.getResource("/views/ofertas-view.fxml"));
+        stage.setTitle("Tracker de Candidaturas");
+        stage.setScene(new Scene(cargador.load()));
+        stage.show();
+    }
+}
