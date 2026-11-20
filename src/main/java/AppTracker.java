@@ -1,7 +1,7 @@
+import data.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import service.OfertaService;
 
 import java.io.IOException;
 
@@ -12,9 +12,7 @@ public class AppTracker extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader cargador = new FXMLLoader(AppTracker.class.getResource("/views/ofertas-view.fxml"));
-        stage.setTitle("Tracker de Candidaturas");
-        stage.setScene(new Scene(cargador.load()));
-        stage.show();
+        DataBaseInitializer.initialize(DataSourceFactory.getDataSource());
+        DataBaseInitializer.loadData(DataSourceFactory.getDataSource());
     }
 }
