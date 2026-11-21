@@ -25,12 +25,12 @@
             <ComboBox fx:id="cmbEstado" prefWidth="140.0" promptText="Estado" />
          </children>
       </HBox>
-      <TableView fx:id="tblOfertas" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblOfertas" fixedCellSize="40.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="colTitulo" prefWidth="75.0" text="Título" />
-          <TableColumn fx:id="colEmpresa" prefWidth="75.0" text="Empresa" />
-            <TableColumn fx:id="colEstado" prefWidth="75.0" text="Estado" />
-            <TableColumn fx:id="colFecha" prefWidth="75.0" text="Fecha" />
+          <TableColumn fx:id="colTitulo" prefWidth="160.0" text="Título" />
+          <TableColumn fx:id="colEmpresa" prefWidth="110.0" text="Empresa" />
+            <TableColumn fx:id="colEstado" prefWidth="90.0" text="Estado" />
+            <TableColumn fx:id="colFecha" text="Fecha" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
