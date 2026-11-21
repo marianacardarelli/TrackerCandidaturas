@@ -4,6 +4,7 @@ import data.DataSourceFactory;
 import data.OfertaJdbcDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,20 +49,46 @@ public class OfertasController implements Initializable {
         colEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombreEmpresa"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaPostulacion"));
+        colFecha.setCellFactory(columna -> new TableCell<>() {
+            @Override
+            protected void updateItem(LocalDate fecha, boolean vacia) {
+                super.updateItem(fecha, vacia);
+                setText(vacia || fecha == null ? null : fecha.format(Oferta.FORMATO_FECHA));
+            }
+        });
 
         cmbEstado.getItems().add(TODOS);
         cmbEstado.getItems().addAll(Oferta.ESTADOS);
         cmbEstado.setValue(TODOS);
+
         txtEmpresa.textProperty().addListener((obs, anterior, texto) -> aplicarFiltros());
         cmbEstado.valueProperty().addListener((obs, anterior, estado) -> aplicarFiltros());
+        dpDesde.valueProperty().addListener((obs, anterior, fecha) -> aplicarFiltros());
         //Cargar la tabla por primera vez
         aplicarFiltros();
     }
 
+    @FXML
     private void aplicarFiltros() {
         String estado = TODOS.equals(cmbEstado.getValue()) ? null : cmbEstado.getValue();
+        Double salarioMinimo;
+        try {
+            salarioMinimo = leerSalarioMinimo();
+        } catch (NumberFormatException e) {
+            mostrarAviso("El salario mínimo debe ser un número.");
+            return;
+        }
         tblOfertas.setItems(FXCollections.observableArrayList(
-                servicio.filtrar(txtEmpresa.getText(), estado, null)));
+                servicio.filtrar(txtEmpresa.getText(), estado, salarioMinimo, dpDesde.getValue())));
+    }
+
+    private Double leerSalarioMinimo() {
+        String texto = txtSalarioMinimo.getText().trim();
+        return texto.isEmpty() ? null : Double.valueOf(texto.replace(',', '.'));
+    }
+
+    private void mostrarAviso(String mensaje) {
+        new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
     }
 
     @javafx.fxml.FXML
@@ -73,7 +100,19 @@ public class OfertasController implements Initializable {
     }
 
     @javafx.fxml.FXML
-    public void borrarOferta(ActionEvent actionEvent) {
+    private void borrarOferta() {
+        Oferta seleccionada = tblOfertas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            mostrarAviso("Selecciona una oferta de la lista.");
+            return;
+        }
+        Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION,
+                "¿Borrar la oferta " + seleccionada.getTitulo() + "?", ButtonType.OK, ButtonType.CANCEL);
+        if (confirmacion.showAndWait().orElse(ButtonType.CANCEL) != ButtonType.OK) {
+            return;
+        }
+        servicio.deleteById(seleccionada.getId());
+        aplicarFiltros();
     }
 
     @javafx.fxml.FXML

@@ -1,6 +1,8 @@
 package service;
 import data.DAO;
 import models.Oferta;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,13 +88,15 @@ public class OfertaService {
      * @param salarioMinimo salario mínimo
      * @return ofertas que cumplen todos los filtros indicados
      */
-    public List<Oferta> filtrar(String empresa, String estado, Double salarioMinimo) {
+    public List<Oferta> filtrar(String empresa, String estado, Double salarioMinimo, LocalDate desde) {
         return dao.findAll().stream()
                 .filter(o -> empresa == null || empresa.isBlank()
                         || o.getNombreEmpresa().toLowerCase().contains(empresa.toLowerCase()))
                 .filter(o -> estado == null || estado.isBlank() || o.getEstado().equals(estado))
                 .filter(o -> salarioMinimo == null
                         || (o.getSalario() != null && o.getSalario() >= salarioMinimo))
+                .filter(o -> desde == null
+                        || (o.getFechaPostulacion() != null && !o.getFechaPostulacion().isBefore(desde)))
                 .toList();
     }
 

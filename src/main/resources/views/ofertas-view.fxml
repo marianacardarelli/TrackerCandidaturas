@@ -27,16 +27,16 @@
       </HBox>
       <HBox spacing="10.0">
          <children>
-            <TextField fx:id="txtSalarioMinimo" focusTraversable="false" promptText="Salario mínimo" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtSalarioMinimo" focusTraversable="false" onAction="#aplicarFiltros" promptText="Salario mínimo" HBox.hgrow="ALWAYS" />
             <DatePicker fx:id="dpDesde" prefWidth="140.0" promptText="Desde" />
          </children>
       </HBox>
-      <TableView fx:id="tblOfertas" fixedCellSize="40.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblOfertas" fixedCellSize="35.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="colTitulo" prefWidth="160.0" text="Título" />
-          <TableColumn fx:id="colEmpresa" prefWidth="110.0" text="Empresa" />
-            <TableColumn fx:id="colEstado" prefWidth="90.0" text="Estado" />
-            <TableColumn fx:id="colFecha" text="Fecha" />
+          <TableColumn fx:id="colTitulo" prefWidth="150.0" text="Título" />
+          <TableColumn fx:id="colEmpresa" minWidth="70.0" prefWidth="90.0" text="Empresa" />
+            <TableColumn fx:id="colEstado" minWidth="75.0" prefWidth="85.0" text="Estado" />
+            <TableColumn fx:id="colFecha" minWidth="75.0" prefWidth="85.0" text="Fecha" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
