@@ -5,10 +5,7 @@ import data.OfertaJdbcDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Oferta;
 import service.OfertaService;
@@ -20,8 +17,12 @@ import java.util.ResourceBundle;
 public class OfertasController implements Initializable {
     @javafx.fxml.FXML
     private TextField txtEmpresa;
+
     @javafx.fxml.FXML
-    private ComboBox cmbEstado;
+    private ComboBox<String> cmbEstado;
+    //Estado para el combo Box
+    private static final String TODOS = "Todos";
+
     @javafx.fxml.FXML
     private TableView<Oferta> tblOfertas;
     @javafx.fxml.FXML
@@ -32,8 +33,14 @@ public class OfertasController implements Initializable {
     private TableColumn<Oferta, String> colEstado;
     @javafx.fxml.FXML
     private TableColumn<Oferta, LocalDate> colFecha;
+
+
     private final OfertaService servicio =
             new OfertaService(new OfertaJdbcDAO(DataSourceFactory.getDataSource()));
+    @javafx.fxml.FXML
+    private TextField txtSalarioMinimo;
+    @javafx.fxml.FXML
+    private DatePicker dpDesde;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +48,20 @@ public class OfertasController implements Initializable {
         colEmpresa.setCellValueFactory(new PropertyValueFactory<>("nombreEmpresa"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
         colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaPostulacion"));
-        tblOfertas.setItems(FXCollections.observableArrayList(servicio.findAll()));
+
+        cmbEstado.getItems().add(TODOS);
+        cmbEstado.getItems().addAll(Oferta.ESTADOS);
+        cmbEstado.setValue(TODOS);
+        txtEmpresa.textProperty().addListener((obs, anterior, texto) -> aplicarFiltros());
+        cmbEstado.valueProperty().addListener((obs, anterior, estado) -> aplicarFiltros());
+        //Cargar la tabla por primera vez
+        aplicarFiltros();
+    }
+
+    private void aplicarFiltros() {
+        String estado = TODOS.equals(cmbEstado.getValue()) ? null : cmbEstado.getValue();
+        tblOfertas.setItems(FXCollections.observableArrayList(
+                servicio.filtrar(txtEmpresa.getText(), estado, null)));
     }
 
     @javafx.fxml.FXML
