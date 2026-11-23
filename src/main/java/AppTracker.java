@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import service.OfertaService;
 
 import java.io.IOException;
-
 /**
  * Aplicación JavaFX del Tracker de Candidaturas. Abre la ventana con el listado de ofertas.
  */

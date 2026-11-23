@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Oferta;
 import service.OfertaService;
+import utils.NavigateTo;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -42,6 +43,8 @@ public class OfertasController implements Initializable {
     private TextField txtSalarioMinimo;
     @javafx.fxml.FXML
     private DatePicker dpDesde;
+
+    private static final String RUTA_FORMULARIO = "/views/oferta-form-view.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,21 +85,14 @@ public class OfertasController implements Initializable {
                 servicio.filtrar(txtEmpresa.getText(), estado, salarioMinimo, dpDesde.getValue())));
     }
 
-    private Double leerSalarioMinimo() {
-        String texto = txtSalarioMinimo.getText().trim();
-        return texto.isEmpty() ? null : Double.valueOf(texto.replace(',', '.'));
-    }
-
-    private void mostrarAviso(String mensaje) {
-        new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
-    }
-
     @javafx.fxml.FXML
     public void verOferta(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
     public void nuevaOferta(ActionEvent actionEvent) {
+        NavigateTo.abrirModal(RUTA_FORMULARIO, "Nueva oferta", null);
+        aplicarFiltros();
     }
 
     @javafx.fxml.FXML
@@ -117,5 +113,23 @@ public class OfertasController implements Initializable {
 
     @javafx.fxml.FXML
     public void editarOferta(ActionEvent actionEvent) {
+        Oferta seleccionada = tblOfertas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            mostrarAviso("Selecciona una oferta de la lista.");
+            return;
+        }
+        NavigateTo.abrirModal(RUTA_FORMULARIO, "Editar oferta",
+                (OfertaFormController controlador) -> controlador.setOferta(seleccionada));
+        aplicarFiltros();
+    }
+
+
+    private Double leerSalarioMinimo() {
+        String texto = txtSalarioMinimo.getText().trim();
+        return texto.isEmpty() ? null : Double.valueOf(texto.replace(',', '.'));
+    }
+
+    private void mostrarAviso(String mensaje) {
+        new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
     }
 }
