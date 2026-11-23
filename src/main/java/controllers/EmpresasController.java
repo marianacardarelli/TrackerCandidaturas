@@ -10,10 +10,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Empresa;
 import service.EmpresaService;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
 
 /**
  * Controlador del listado de empresas: muestra las empresas, filtra por nombre
@@ -21,8 +28,7 @@ import java.util.ResourceBundle;
  */
 public class EmpresasController implements Initializable {
 
-    private final EmpresaService empresaService =
-            new EmpresaService(new EmpresaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EmpresaService empresaService = new EmpresaService(new EmpresaJdbcDAO(DataSourceFactory.getDataSource()));
 
     private FilteredList<Empresa> empresasFiltradas;
     @FXML
@@ -38,7 +44,7 @@ public class EmpresasController implements Initializable {
     @FXML
     private TextField txtBuscar;
     @FXML
-    private TableColumn<Empresa,String> colSector;
+    private TableColumn<Empresa, String> colSector;
     @FXML
     private TableColumn<Empresa, LocalDate> colRegistro;
     @FXML
@@ -57,6 +63,7 @@ public class EmpresasController implements Initializable {
 
     @FXML
     private void nuevaEmpresa() {
+        abrirFormulario(null);
     }
 
     @FXML
@@ -66,6 +73,7 @@ public class EmpresasController implements Initializable {
             mostrarAviso("Selecciona una empresa de la lista.");
             return;
         }
+        abrirFormulario(seleccionada);
     }
 
     @FXML
@@ -88,7 +96,25 @@ public class EmpresasController implements Initializable {
         }
     }
 
-    /** Vuelve a leer las empresas de la base de datos y refresca la tabla. */
+    private void abrirFormulario(Empresa empresa) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/empresa-form-view.fxml"));
+            Parent raiz = loader.load();
+            EmpresaFormController formulario = loader.getController();
+            formulario.setEmpresa(empresa);
+
+            Stage ventana = new Stage();
+            ventana.setScene(new Scene(raiz));
+            ventana.showAndWait();
+            recargar();
+        } catch (IOException e) {
+            mostrarAviso("No se pudo abrir el formulario.");
+        }
+    }
+
+    /**
+     * Vuelve a leer las empresas de la base de datos y refresca la tabla.
+     */
     public void recargar() {
         empresasFiltradas = new FilteredList<>(FXCollections.observableArrayList(empresaService.findAll()));
         tblEmpresas.setItems(empresasFiltradas);
