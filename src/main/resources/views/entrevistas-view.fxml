@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="700.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EntrevistasController">
+   <children>
+      <Label text="Entrevistas">
+         <VBox.margin>
+            <Insets left="16.0" top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbEstado" prefWidth="200.0">
+         <VBox.margin>
+            <Insets left="20.0" top="20.0" />
+         </VBox.margin>
+      </ComboBox>
+      <TableView fx:id="tblEntrevistas" prefHeight="228.0" prefWidth="300.0">
+        <columns>
+          <TableColumn fx:id="colFecha" prefWidth="99.0" text="Fecha" />
+          <TableColumn fx:id="colOferta" prefWidth="94.0" text="Oferta" />
+            <TableColumn fx:id="colTipo" prefWidth="105.0" text="Tipo" />
+            <TableColumn fx:id="colResultado" prefWidth="121.0" text="Resultado" />
+        </columns>
+         <VBox.margin>
+            <Insets top="60.0" />
+         </VBox.margin>
+      </TableView>
+      <HBox>
+         <VBox.margin>
+            <Insets left="40.0" top="80.0" />
+         </VBox.margin>
+         <children>
+            <Button fx:id="btnBorrar" mnemonicParsing="false" onAction="#borrarEntrevista" prefHeight="40.0" prefWidth="60.0" text="Borrar" />
+            <Button fx:id="btnEditar" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#editarEntrevista" prefHeight="40.0" prefWidth="60.0" text="Editar">
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnNueva" layoutX="150.0" layoutY="10.0" mnemonicParsing="false" onAction="#nuevaEntrevista" prefHeight="40.0" prefWidth="60.0" text="Nueva">
+               <HBox.margin>
+                  <Insets left="80.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
