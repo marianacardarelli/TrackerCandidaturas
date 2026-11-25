@@ -53,6 +53,10 @@ public class EntrevistasController implements Initializable {
     private Button btnEditar;
     @FXML
     private Button btnBorrar;
+    @FXML
+    private Button btnCandidaturas;
+    @FXML
+    private Button btnEmpresas;
 
     /**
      * Enlaza las columnas con los datos de {@link Entrevista}, rellena el filtro
@@ -156,5 +160,13 @@ public class EntrevistasController implements Initializable {
      */
     private void mostrarAviso(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
+    }
+
+    @FXML
+    public void candidatura(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void empresa(ActionEvent actionEvent) {
     }
 }
