@@ -44,6 +44,8 @@ public class OfertasController implements Initializable {
 
     private static final String RUTA_FORMULARIO = "/views/oferta-form-view.fxml";
     private static final String RUTA_DETALLE = "/views/oferta-detalle-view.fxml";
+    private static final String RUTA_EMPRESAS = "/views/empresas-view.fxml";
+    private static final String RUTA_ENTREVISTAS = "/views/entrevistas-view.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -127,6 +129,16 @@ public class OfertasController implements Initializable {
         NavigateTo.abrirModal(RUTA_FORMULARIO, "Editar oferta",
                 (OfertaFormController controlador) -> controlador.setOferta(seleccionada));
         aplicarFiltros();
+    }
+
+    @FXML
+    private void empresa() {
+        NavigateTo.cambiarPantalla(tblOfertas, RUTA_EMPRESAS);
+    }
+
+    @FXML
+    private void entrevista() {
+        NavigateTo.cambiarPantalla(tblOfertas, RUTA_ENTREVISTAS);
     }
 
 
