@@ -36,11 +36,13 @@ public class EntrevistaFormController implements Initializable {
     @FXML
     private ComboBox<String> cmbResultado;
     @FXML
+    private Button btnGuardar;
+    @FXML
+    private Button btnCancelar;
+    @FXML
     private TextArea txtNotas;
     @FXML
     private Label lblError;
-    @FXML
-    private Button btnGuardar;
 
     /**
      * Rellena los desplegables de oferta, tipo y resultado y deja vacío el mensaje de error.
