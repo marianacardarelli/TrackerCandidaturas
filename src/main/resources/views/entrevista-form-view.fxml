@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox prefHeight="700.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EntrevistaFormController">
    <children>
       <Label text="Nueva Entrevista">
@@ -81,19 +80,24 @@
             <Insets left="10.0" top="20.0" />
          </VBox.margin>
       </Label>
-      <TextArea prefHeight="150.0" prefWidth="200.0" promptText="Escribe una nota ...">
+      <TextArea fx:id="txtNotas" prefHeight="150.0" prefWidth="200.0" promptText="Escribe una nota ...">
          <VBox.margin>
             <Insets left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </TextArea>
+      <Label fx:id="lblError" text="Si hay algún error al agregar te saldrá aquí">
+         <VBox.margin>
+            <Insets left="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
       <HBox>
          <children>
-            <Button fx:id="btnCancelar" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Cancelar">
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="60.0" prefWidth="100.0" text="Cancelar">
                <HBox.margin>
                   <Insets top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btnGuardar" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="Guardar">
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardar" prefHeight="60.0" prefWidth="100.0" text="Guardar">
                <HBox.margin>
                   <Insets left="140.0" top="20.0" />
                </HBox.margin>
