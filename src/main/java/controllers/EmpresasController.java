@@ -4,6 +4,7 @@ import data.DataSourceFactory;
 import data.EmpresaJdbcDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -51,6 +52,10 @@ public class EmpresasController implements Initializable {
     private TableColumn<Empresa, LocalDate> colRegistro;
     @FXML
     private Button btnEditar;
+    @FXML
+    private Button btnCandidaturas;
+    @FXML
+    private Button btnEntrevista;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,4 +139,11 @@ public class EmpresasController implements Initializable {
     }
 
 
+    @FXML
+    public void candidatura(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void entrevista(ActionEvent actionEvent) {
+    }
 }
