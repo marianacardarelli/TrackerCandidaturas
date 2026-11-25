@@ -6,13 +6,18 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import models.Entrevista;
 import models.Oferta;
 import service.EntrevistaService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -76,7 +81,7 @@ public class EntrevistasController implements Initializable {
     /** Abrirá el formulario vacío para crear una entrevista nueva. */
     @FXML
     private void nuevaEntrevista() {
-        // Pendiente: abrir el formulario de entrevista vacío.
+        abrirFormulario(null);
     }
 
     /** Abrirá el formulario con los datos de la entrevista seleccionada. */
@@ -87,7 +92,7 @@ public class EntrevistasController implements Initializable {
             mostrarAviso("Selecciona una entrevista de la lista.");
             return;
         }
-        // Pendiente: abrir el formulario con los datos de "seleccionada".
+        abrirFormulario(seleccionada);
     }
 
     /** Borra la entrevista seleccionada tras pedir confirmación. */
@@ -106,6 +111,29 @@ public class EntrevistasController implements Initializable {
         entrevistaService.deleteById(seleccionada.getId());
         recargar();
     }
+
+    /**
+     * Abre el formulario de entrevista en una ventana nueva y, al cerrarla,
+     * refresca la tabla.
+     *
+     * @param entrevista entrevista a editar, o {@code null} para crear una nueva
+     */
+    private void abrirFormulario(Entrevista entrevista) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/entrevista-form-view.fxml"));
+            Parent raiz = loader.load();
+            EntrevistaFormController formulario = loader.getController();
+            formulario.setEntrevista(entrevista);
+
+            Stage ventana = new Stage();
+            ventana.setScene(new Scene(raiz));
+            ventana.showAndWait();
+            recargar();
+        } catch (IOException e) {
+            mostrarAviso("No se pudo abrir el formulario.");
+        }
+    }
+
 
     /** Vuelve a leer las entrevistas de la base de datos y refresca la tabla. */
     public void recargar() {
