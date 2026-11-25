@@ -46,6 +46,10 @@ public class OfertasController implements Initializable {
     private static final String RUTA_DETALLE = "/views/oferta-detalle-view.fxml";
     private static final String RUTA_EMPRESAS = "/views/empresas-view.fxml";
     private static final String RUTA_ENTREVISTAS = "/views/entrevistas-view.fxml";
+    @FXML
+    private Button btnEmpresas;
+    @FXML
+    private Button btnEntrevista;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -149,5 +153,17 @@ public class OfertasController implements Initializable {
 
     private void mostrarAviso(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
+    }
+
+    @Deprecated
+    public void oferta(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void empresa(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void entrevista(ActionEvent actionEvent) {
     }
 }

@@ -31,7 +31,7 @@
             <DatePicker fx:id="dpDesde" prefWidth="140.0" promptText="Desde" />
          </children>
       </HBox>
-      <TableView fx:id="tblOfertas" fixedCellSize="35.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <TableView fx:id="tblOfertas" fixedCellSize="35.0" prefHeight="476.0" prefWidth="388.0" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="colTitulo" prefWidth="150.0" text="Título" />
           <TableColumn fx:id="colEmpresa" minWidth="70.0" prefWidth="90.0" text="Empresa" />
@@ -48,6 +48,20 @@
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verOferta" text="Ver" HBox.hgrow="ALWAYS" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarOferta" text="Editar" HBox.hgrow="ALWAYS" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarOferta" text="Borrar" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox prefHeight="149.0" prefWidth="388.0">
+         <children>
+            <Button fx:id="btnEmpresas" mnemonicParsing="false" onAction="#empresa" prefHeight="45.0" prefWidth="135.0" style="-fx-background-radius: 12;" text="Empresas">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnEntrevista" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#entrevista" prefHeight="45.0" prefWidth="135.0" style="-fx-background-radius: 12;" text="Entrevistas">
+               <HBox.margin>
+                  <Insets left="80.0" top="20.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
    </children>

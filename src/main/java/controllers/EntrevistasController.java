@@ -18,6 +18,7 @@ import models.Oferta;
 import service.EntrevistaService;
 import utils.Contexto;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +54,10 @@ public class EntrevistasController implements Initializable {
     private Button btnEditar;
     @FXML
     private Button btnBorrar;
+    @FXML
+    private Button btnCandidaturas;
+    @FXML
+    private Button btnEmpresas;
 
     /**
      * Enlaza las columnas con los datos de {@link Entrevista}, rellena el filtro
@@ -156,5 +161,13 @@ public class EntrevistasController implements Initializable {
      */
     private void mostrarAviso(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
+    }
+
+    @FXML
+    public void candidatura(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void empresa(ActionEvent actionEvent) {
     }
 }
