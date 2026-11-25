@@ -1,10 +1,6 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.EmpresaJdbcDAO;
-import data.OfertaJdbcDAO;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,6 +9,7 @@ import models.Empresa;
 import models.Oferta;
 import service.EmpresaService;
 import service.OfertaService;
+import utils.Contexto;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,10 +36,8 @@ public class OfertaFormController implements Initializable {
     @javafx.fxml.FXML
     private TextField txtTitulo;
 
-    private final EmpresaService empresaService =
-            new EmpresaService(new EmpresaJdbcDAO(DataSourceFactory.getDataSource()));
-    private final OfertaService ofertaService =
-            new OfertaService(new OfertaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EmpresaService empresaService = Contexto.getEmpresaService();
+    private final OfertaService ofertaService = Contexto.getOfertaService();
 
     private Oferta ofertaEditada;
 

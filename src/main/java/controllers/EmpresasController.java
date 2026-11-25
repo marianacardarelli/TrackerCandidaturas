@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utils.Contexto;
 
 import java.io.IOException;
 
@@ -30,7 +31,7 @@ import java.util.ResourceBundle;
  */
 public class EmpresasController implements Initializable {
 
-    private final EmpresaService empresaService = new EmpresaService(new EmpresaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EmpresaService empresaService = Contexto.getEmpresaService();
 
     private FilteredList<Empresa> empresasFiltradas;
     @FXML

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import models.Entrevista;
 import models.Oferta;
 import service.EntrevistaService;
+import utils.Contexto;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,8 +31,7 @@ public class EntrevistasController implements Initializable {
 
     private static final String TODOS = "Todos";
 
-    private final EntrevistaService entrevistaService =
-            new EntrevistaService(new EntrevistaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EntrevistaService entrevistaService = Contexto.getEntrevistaService();
 
     private FilteredList<Entrevista> entrevistasFiltradas;
 

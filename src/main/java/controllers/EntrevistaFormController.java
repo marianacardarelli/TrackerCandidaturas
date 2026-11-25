@@ -10,6 +10,7 @@ import models.Entrevista;
 import models.Oferta;
 import service.EntrevistaService;
 import service.OfertaService;
+import utils.Contexto;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,10 +21,8 @@ import java.util.ResourceBundle;
  */
 public class EntrevistaFormController implements Initializable {
 
-    private final EntrevistaService entrevistaService =
-            new EntrevistaService(new EntrevistaJdbcDAO(DataSourceFactory.getDataSource()));
-    private final OfertaService ofertaService =
-            new OfertaService(new OfertaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EntrevistaService entrevistaService = Contexto.getEntrevistaService();
+    private final OfertaService ofertaService = Contexto.getOfertaService();
 
     private Entrevista entrevista;
 

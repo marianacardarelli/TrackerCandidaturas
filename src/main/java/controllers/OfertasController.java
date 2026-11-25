@@ -1,7 +1,5 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.OfertaJdbcDAO;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Oferta;
 import service.OfertaService;
+import utils.Contexto;
 import utils.NavigateTo;
 
 import java.net.URL;
@@ -37,8 +36,7 @@ public class OfertasController implements Initializable {
     private TableColumn<Oferta, LocalDate> colFecha;
 
 
-    private final OfertaService servicio =
-            new OfertaService(new OfertaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final OfertaService servicio = Contexto.getOfertaService();
     @javafx.fxml.FXML
     private TextField txtSalarioMinimo;
     @javafx.fxml.FXML
