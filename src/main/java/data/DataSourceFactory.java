@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 public class DataSourceFactory {
 
     /** URL de conexión a la base de datos MySQL. */
-    private static final String URL = "jdbc:mysql://localhost:3309/ad";
+    private static final String URL = "jdbc:mysql://localhost:3307/ad";
 
     /** Instancia única del {@link DataSource}. */
     private static DataSource dataSource = null;

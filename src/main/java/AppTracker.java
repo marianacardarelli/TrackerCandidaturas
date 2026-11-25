@@ -15,9 +15,10 @@ public class AppTracker extends Application {
     public void start(Stage stage) throws IOException {
         DataBaseInitializer.initialize(DataSourceFactory.getDataSource());
         DataBaseInitializer.loadData(DataSourceFactory.getDataSource());
-        FXMLLoader cargador = new FXMLLoader(AppTracker.class.getResource("/views/ofertas-view.fxml"));
-        stage.setTitle("Tracker de Candidaturas");
+        FXMLLoader cargador = new FXMLLoader(AppTracker.class.getResource("/views/entrevistas-view.fxml"));
         stage.setScene(new Scene(cargador.load()));
         stage.show();
+        stage.setTitle("Tracker de Candidaturas");
+
     }
 }
