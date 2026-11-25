@@ -45,6 +45,7 @@ public class OfertasController implements Initializable {
     private DatePicker dpDesde;
 
     private static final String RUTA_FORMULARIO = "/views/oferta-form-view.fxml";
+    private static final String RUTA_DETALLE = "/views/oferta-detalle-view.fxml";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,6 +88,13 @@ public class OfertasController implements Initializable {
 
     @javafx.fxml.FXML
     public void verOferta(ActionEvent actionEvent) {
+        Oferta seleccionada = tblOfertas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            mostrarAviso("Selecciona una oferta de la lista.");
+            return;
+        }
+        NavigateTo.abrirModal(RUTA_DETALLE, "Detalle de la oferta",
+                (OfertaDetalleController controlador) -> controlador.setOferta(seleccionada));
     }
 
     @javafx.fxml.FXML
