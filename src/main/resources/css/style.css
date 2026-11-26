@@ -1,0 +1,135 @@
+/* ===== Paleta (estilo claymorfismo lila del Figma) ===== */
+.root {
+    -color-primario: #6856D1;
+    -color-secundario: #7564D7;
+    -color-fondo: #F0EDFA;
+    -color-tarjeta: #FFFFFF;
+    -color-texto: #2E2A4F;
+    -color-texto-suave: #8A85A8;
+    -color-borde: #DDD8F3;
+    -color-error: #D64550;
+    -fx-font-size: 14px;
+    -fx-background-color: -color-fondo;
+}
+
+.pantalla {
+    -fx-background-color: -color-fondo;
+}
+
+/* ===== Textos ===== */
+.label {
+    -fx-text-fill: -color-texto;
+}
+
+.titulo {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primario;
+}
+
+.etiqueta {
+    -fx-font-weight: bold;
+}
+
+.error,
+#lblError {
+    -fx-text-fill: -color-error;
+    -fx-font-size: 13px;
+}
+
+/* ===== Campos de texto ===== */
+.text-field,
+.text-area,
+.combo-box-base {
+    -fx-background-color: -color-tarjeta;
+    -fx-background-radius: 16;
+    -fx-border-color: -color-borde;
+    -fx-border-radius: 16;
+    -fx-prompt-text-fill: -color-texto-suave;
+    -fx-effect: dropshadow(gaussian, rgba(104, 86, 209, 0.15), 10, 0, 0, 3);
+}
+
+.text-field:focused,
+.text-area:focused,
+.combo-box-base:focused {
+    -fx-border-color: -color-primario;
+}
+
+.text-area .content {
+    -fx-background-color: -color-tarjeta;
+    -fx-background-radius: 16;
+}
+
+.combo-box-base .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box-base .arrow {
+    -fx-background-color: -color-primario;
+}
+
+/* ===== Tablas ===== */
+.table-view {
+    -fx-background-color: -color-tarjeta;
+    -fx-background-radius: 20;
+    -fx-border-color: -color-borde;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(104, 86, 209, 0.18), 14, 0, 0, 4);
+}
+
+.table-view .column-header,
+.table-view .filler {
+    -fx-background-color: -color-primario;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F7F5FD;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: -color-secundario;
+}
+
+.table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* ===== Botones (todos tienen el estilo "arcilla" por defecto) ===== */
+.button,
+.boton-primario {
+    -fx-background-color: linear-gradient(to bottom, -color-secundario, -color-primario);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(104, 86, 209, 0.45), 12, 0.1, 0, 5);
+}
+
+.button:hover,
+.boton-primario:hover {
+    -fx-background-color: linear-gradient(to bottom, #8878E6, -color-secundario);
+}
+
+.button:pressed,
+.boton-primario:pressed {
+    -fx-translate-y: 2;
+    -fx-effect: dropshadow(gaussian, rgba(104, 86, 209, 0.3), 6, 0.1, 0, 2);
+}
+
+.boton-secundario {
+    -fx-background-color: -color-tarjeta;
+    -fx-text-fill: -color-primario;
+    -fx-border-color: -color-borde;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(104, 86, 209, 0.2), 10, 0, 0, 3);
+}
+
+.boton-secundario:hover {
+    -fx-background-color: #F7F5FD;
+}
