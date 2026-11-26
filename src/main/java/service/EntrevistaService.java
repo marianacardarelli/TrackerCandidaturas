@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * Reglas de negocio de las entrevistas: valida los datos antes de guardarlos
- * y traduce los errores de la base de datos a mensajes comprensibles.
- */
+
 public class EntrevistaService {
 
     private final DAO<Entrevista> dao;
@@ -87,6 +84,12 @@ public class EntrevistaService {
         dao.deleteById(id);
     }
 
+    /**
+     * Comprueba que la entrevista tiene oferta, fecha, tipo y resultado válidos.
+     *
+     * @param entrevista entrevista a validar
+     * @throws IllegalArgumentException si algún dato falta o no es válido
+     */
     private void validar(Entrevista entrevista) {
         if (entrevista.getOferta() == null) {
             throw new IllegalArgumentException("Debes elegir una oferta.");
