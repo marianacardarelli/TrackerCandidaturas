@@ -1,25 +1,17 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.EmpresaJdbcDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Empresa;
 import service.EmpresaService;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import utils.Contexto;
-
-import java.io.IOException;
-
-import java.io.IOException;
+import utils.NavigateTo;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -105,19 +97,10 @@ public class EmpresasController implements Initializable {
     }
 
     private void abrirFormulario(Empresa empresa) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/empresa-form-view.fxml"));
-            Parent raiz = loader.load();
-            EmpresaFormController formulario = loader.getController();
-            formulario.setEmpresa(empresa);
-
-            Stage ventana = new Stage();
-            ventana.setScene(new Scene(raiz));
-            ventana.showAndWait();
-            recargar();
-        } catch (IOException e) {
-            mostrarAviso("No se pudo abrir el formulario.");
-        }
+        String titulo = empresa == null ? "Nueva empresa" : "Editar empresa";
+        NavigateTo.abrirModal("/views/empresa-form-view.fxml", titulo,
+                (EmpresaFormController formulario) -> formulario.setEmpresa(empresa));
+        recargar();
     }
 
     /**
@@ -141,10 +124,12 @@ public class EmpresasController implements Initializable {
 
 
     @FXML
-    public void candidatura(ActionEvent actionEvent) {
+    private void candidatura(ActionEvent evento) {
+        NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/ofertas-view.fxml");
     }
 
     @FXML
-    public void entrevista(ActionEvent actionEvent) {
+    private void entrevista(ActionEvent evento) {
+        NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/entrevistas-view.fxml");
     }
 }

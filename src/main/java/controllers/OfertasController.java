@@ -155,15 +155,4 @@ public class OfertasController implements Initializable {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
     }
 
-    @Deprecated
-    public void oferta(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void empresa(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void entrevista(ActionEvent actionEvent) {
-    }
 }
