@@ -102,16 +102,19 @@ public class OfertaService {
 
     private void validar(Oferta oferta) {
         if (oferta.getTitulo() == null || oferta.getTitulo().isBlank()) {
-            throw new IllegalArgumentException("El título es obligatorio");
+            throw new IllegalArgumentException("El título es obligatorio.");
         }
         if (oferta.getEmpresa() == null) {
-            throw new IllegalArgumentException("La empresa es obligatoria");
+            throw new IllegalArgumentException("La empresa es obligatoria.");
         }
-        if (!Oferta.ESTADOS.contains(oferta.getEstado())) {
-            throw new IllegalArgumentException("Estado no válido: " + oferta.getEstado());
+        if (oferta.getEstado() == null || !Oferta.ESTADOS.contains(oferta.getEstado())) {
+            throw new IllegalArgumentException("El estado debe ser uno de: " + Oferta.ESTADOS + ".");
+        }
+        if (oferta.getFechaPostulacion() == null) {
+            throw new IllegalArgumentException("La fecha de postulación es obligatoria.");
         }
         if (oferta.getSalario() != null && oferta.getSalario() < 0) {
-            throw new IllegalArgumentException("El salario no puede ser negativo");
+            throw new IllegalArgumentException("El salario no puede ser negativo.");
         }
     }
 }
