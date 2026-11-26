@@ -1,11 +1,9 @@
 package utils;
 
-import data.DataSourceFactory;
-import data.EmpresaJdbcDAO;
-import data.EntrevistaJdbcDAO;
-import data.OfertaJdbcDAO;
+import data.*;
 import service.EmpresaService;
 import service.EntrevistaService;
+import service.ImportacionService;
 import service.OfertaService;
 
 import javax.sql.DataSource;
@@ -26,6 +24,9 @@ public final class Contexto {
 
     private static final EntrevistaService ENTREVISTA_SERVICE =
             new EntrevistaService(new EntrevistaJdbcDAO(DATA_SOURCE));
+
+    private static final ImportacionService IMPORTACION_SERVICE =
+            new ImportacionService(new ImportacionJdbcDAO(DATA_SOURCE));
 
     private Contexto() {
     }
@@ -49,5 +50,12 @@ public final class Contexto {
      */
     public static EntrevistaService getEntrevistaService() {
         return ENTREVISTA_SERVICE;
+    }
+
+    /**
+     * @return servicio de importación de candidaturas desde CSV
+     */
+    public static ImportacionService getImportacionService() {
+        return IMPORTACION_SERVICE;
     }
 }

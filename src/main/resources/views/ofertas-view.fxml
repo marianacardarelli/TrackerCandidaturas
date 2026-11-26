@@ -48,6 +48,7 @@
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#verOferta" text="Ver" HBox.hgrow="ALWAYS" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editarOferta" text="Editar" HBox.hgrow="ALWAYS" />
             <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#borrarOferta" text="Borrar" HBox.hgrow="ALWAYS" />
+            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#importarCsv" text="Importar CSV" />
          </children>
       </HBox>
       <HBox prefHeight="149.0" prefWidth="388.0">

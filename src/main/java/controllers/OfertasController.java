@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Oferta;
+import service.ImportacionService;
 import service.OfertaService;
 import utils.Contexto;
 import utils.NavigateTo;
@@ -46,10 +47,8 @@ public class OfertasController implements Initializable {
     private static final String RUTA_DETALLE = "/views/oferta-detalle-view.fxml";
     private static final String RUTA_EMPRESAS = "/views/empresas-view.fxml";
     private static final String RUTA_ENTREVISTAS = "/views/entrevistas-view.fxml";
-    @FXML
-    private Button btnEmpresas;
-    @FXML
-    private Button btnEntrevista;
+    private static final String RUTA_CSV = "/candidaturas.csv";
+    private final ImportacionService importacionService = Contexto.getImportacionService();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,6 +133,19 @@ public class OfertasController implements Initializable {
         NavigateTo.abrirModal(RUTA_FORMULARIO, "Editar oferta",
                 (OfertaFormController controlador) -> controlador.setOferta(seleccionada));
         aplicarFiltros();
+    }
+    @FXML
+    private void importarCsv() {
+        try {
+            int importadas = importacionService.importarCsv(RUTA_CSV);
+            new Alert(Alert.AlertType.INFORMATION,
+                    "Candidaturas importadas: " + importadas, ButtonType.OK).showAndWait();
+            aplicarFiltros();
+        } catch (IllegalArgumentException e) {
+            mostrarAviso(e.getMessage());
+        } catch (RuntimeException e) {
+            mostrarAviso("No se pudo importar. No se ha guardado ninguna candidatura.");
+        }
     }
 
     @FXML
