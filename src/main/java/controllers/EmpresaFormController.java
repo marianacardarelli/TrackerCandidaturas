@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import models.Empresa;
 import service.EmpresaService;
+import models.Oferta;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,9 +30,23 @@ public class EmpresaFormController implements Initializable {
     @FXML
     private TextField txtWeb;
     @FXML
-    private Label lblError;
-    @FXML
     private Button btnGuardar;
+    @FXML
+    private Label lblFecha;
+    @FXML
+    private Label lblNombre;
+    @FXML
+    private Label titulo;
+    @FXML
+    private Button btnCancelar;
+    @FXML
+    private Label lblweb;
+    @FXML
+    private TextField txtFecha;
+    @FXML
+    private Label lblSector;
+    @FXML
+    private Label lblError;
 
     /**
      * Rellena el desplegable de sectores y deja vacío el mensaje de error.
@@ -43,6 +58,7 @@ public class EmpresaFormController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         cmbSector.getItems().addAll("Consultoría tecnológica", "Tecnología", "Telecomunicaciones", "Banca", "Otros");
         lblError.setText("");
+        txtFecha.setEditable(false);
     }
 
     /**
@@ -57,6 +73,9 @@ public class EmpresaFormController implements Initializable {
             txtNombre.setText(empresa.getNombre());
             cmbSector.setValue(empresa.getSector());
             txtWeb.setText(empresa.getWeb());
+            if (empresa.getFechaRegistro() != null) {
+                txtFecha.setText(empresa.getFechaRegistro().format(Oferta.FORMATO_FECHA));
+            }
         }
     }
 
