@@ -4,6 +4,7 @@ import data.DAO;
 import models.Entrevista;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -40,7 +41,7 @@ public class EntrevistaService {
      */
     public List<Entrevista> findByOferta(Long idOferta) {
         return dao.findAll().stream()
-                .filter(e -> e.getOferta() != null && e.getOferta().getId() == idOferta)
+                .filter(e -> e.getOferta() != null && Objects.equals(e.getOferta().getId(), idOferta))
                 .toList();
     }
 

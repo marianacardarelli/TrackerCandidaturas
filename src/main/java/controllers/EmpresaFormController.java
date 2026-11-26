@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import models.Empresa;
 import service.EmpresaService;
+import utils.Contexto;
 import models.Oferta;
 
 import java.net.URL;
@@ -18,8 +19,7 @@ import java.util.ResourceBundle;
  */
 public class EmpresaFormController implements Initializable {
 
-    private final EmpresaService empresaService =
-            new EmpresaService(new EmpresaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EmpresaService empresaService = Contexto.getEmpresaService();
 
     private Empresa empresa;
 

@@ -1,23 +1,21 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.EntrevistaJdbcDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import models.Entrevista;
 import models.Oferta;
 import service.EntrevistaService;
+import utils.Contexto;
+import utils.NavigateTo;
 
-import java.awt.event.ActionEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,8 +29,7 @@ public class EntrevistasController implements Initializable {
 
     private static final String TODOS = "Todos";
 
-    private final EntrevistaService entrevistaService =
-            new EntrevistaService(new EntrevistaJdbcDAO(DataSourceFactory.getDataSource()));
+    private final EntrevistaService entrevistaService = Contexto.getEntrevistaService();
 
     private FilteredList<Entrevista> entrevistasFiltradas;
 
@@ -124,19 +121,10 @@ public class EntrevistasController implements Initializable {
      * @param entrevista entrevista a editar, o {@code null} para crear una nueva
      */
     private void abrirFormulario(Entrevista entrevista) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/entrevista-form-view.fxml"));
-            Parent raiz = loader.load();
-            EntrevistaFormController formulario = loader.getController();
-            formulario.setEntrevista(entrevista);
-
-            Stage ventana = new Stage();
-            ventana.setScene(new Scene(raiz));
-            ventana.showAndWait();
-            recargar();
-        } catch (IOException e) {
-            mostrarAviso("No se pudo abrir el formulario.");
-        }
+        String titulo = entrevista == null ? "Nueva entrevista" : "Editar entrevista";
+        NavigateTo.abrirModal("/views/entrevista-form-view.fxml", titulo,
+                (EntrevistaFormController formulario) -> formulario.setEntrevista(entrevista));
+        recargar();
     }
 
 
@@ -164,10 +152,12 @@ public class EntrevistasController implements Initializable {
     }
 
     @FXML
-    public void candidatura(ActionEvent actionEvent) {
+    private void empresa(ActionEvent evento) {
+        NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/empresas-view.fxml");
     }
 
     @FXML
-    public void empresa(ActionEvent actionEvent) {
+    private void candidatura(ActionEvent evento) {
+        NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/ofertas-view.fxml");
     }
 }
