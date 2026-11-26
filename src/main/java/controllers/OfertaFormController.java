@@ -12,6 +12,7 @@ import service.OfertaService;
 import utils.Contexto;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 /**
@@ -46,6 +47,7 @@ public class OfertaFormController implements Initializable {
         cmbEmpresa.setItems(FXCollections.observableArrayList(empresaService.findAll()));
         cmbEstado.setItems(FXCollections.observableArrayList(Oferta.ESTADOS));
         cmbEstado.setValue(Oferta.ESTADOS.getFirst());
+        dpFecha.setValue(LocalDate.now());
     }
 
     @FXML

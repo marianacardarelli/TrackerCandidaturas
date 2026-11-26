@@ -74,6 +74,7 @@ public class OfertasController implements Initializable {
         dpDesde.valueProperty().addListener((obs, anterior, fecha) -> aplicarFiltros());
         //Cargar la tabla por primera vez
         aplicarFiltros();
+
     }
 
     @FXML
