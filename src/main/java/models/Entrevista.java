@@ -17,7 +17,7 @@ public class Entrevista {
     public static final List<String> TIPOS = List.of("telefonica", "tecnica", "presencial", "online");
 
     /** Resultados válidos de una entrevista. */
-    public static final List<String> RESULTADOS = List.of("pendiente", "aceptado", "rechazado");
+    public static final List<String> RESULTADOS = List.of("pendiente", "positivo", "negativo");
 
     /** Identificador único (0 si todavía no está guardada). */
     private long id;
