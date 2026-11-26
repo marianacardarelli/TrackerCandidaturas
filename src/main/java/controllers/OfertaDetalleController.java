@@ -1,44 +1,49 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.EntrevistaJdbcDAO;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.Entrevista;
 import models.Oferta;
 import service.EntrevistaService;
 import utils.Contexto;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de la pantalla de detalle de una oferta: muestra sus datos,
+ * la empresa asociada y la lista de sus entrevistas.
+ */
 public class OfertaDetalleController implements Initializable {
 
-    @javafx.fxml.FXML
+    @FXML
     private Label lblEstado;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblFecha;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblNotas;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblEnlace;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblTitulo;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblSalario;
-    @javafx.fxml.FXML
+    @FXML
     private Label lblEmpresa;
-    @javafx.fxml.FXML
-    private TableColumn colTipoEntrevista;
-    @javafx.fxml.FXML
-    private TableColumn colResultadoEntrevista;
-    @javafx.fxml.FXML
-    private TableView tblEntrevistas;
-    @javafx.fxml.FXML
-    private TableColumn colFechaEntrevista;
+    @FXML
+    private TableColumn<Entrevista, String> colTipoEntrevista;
+    @FXML
+    private TableColumn<Entrevista, String> colResultadoEntrevista;
+    @FXML
+    private TableView<Entrevista> tblEntrevistas;
+    @FXML
+    private TableColumn<Entrevista, LocalDate> colFechaEntrevista;
 
     private final EntrevistaService entrevistaService = Contexto.getEntrevistaService();
 
@@ -47,7 +52,6 @@ public class OfertaDetalleController implements Initializable {
         colFechaEntrevista.setCellValueFactory(new PropertyValueFactory<>("fecha"));
         colTipoEntrevista.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colResultadoEntrevista.setCellValueFactory(new PropertyValueFactory<>("resultado"));
-
     }
 
     /**
