@@ -101,6 +101,9 @@ public class EmpresaService {
         if (empresa.getNombre() == null || empresa.getNombre().isBlank()) {
             throw new IllegalArgumentException("El nombre de la empresa es obligatorio.");
         }
+        if (empresa.getSector() == null || empresa.getSector().isBlank()) {
+            throw new IllegalArgumentException("El sector es obligatorio.");
+        }
         if (empresa.getNombre().length() > LONGITUD_MAXIMA_NOMBRE) {
             throw new IllegalArgumentException(
                     "El nombre no puede superar los " + LONGITUD_MAXIMA_NOMBRE + " caracteres.");

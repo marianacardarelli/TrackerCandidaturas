@@ -1,8 +1,5 @@
 package controllers;
 
-import data.DataSourceFactory;
-import data.EntrevistaJdbcDAO;
-import data.OfertaJdbcDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

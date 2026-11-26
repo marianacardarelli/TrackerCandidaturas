@@ -15,8 +15,6 @@ import service.EntrevistaService;
 import utils.Contexto;
 import utils.NavigateTo;
 
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -80,13 +78,13 @@ public class EntrevistasController implements Initializable {
         cmbResultado.valueProperty().addListener((obs, anterior, nuevo) -> filtrar());
     }
 
-    /** Abrirá el formulario vacío para crear una entrevista nueva. */
+    /** Abre el formulario vacío para crear una entrevista nueva. */
     @FXML
     private void nuevaEntrevista() {
         abrirFormulario(null);
     }
 
-    /** Abrirá el formulario con los datos de la entrevista seleccionada. */
+    /** Abre el formulario con los datos de la entrevista seleccionada. */
     @FXML
     private void editarEntrevista() {
         Entrevista seleccionada = tblEntrevistas.getSelectionModel().getSelectedItem();
