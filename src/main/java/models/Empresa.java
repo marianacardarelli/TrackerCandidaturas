@@ -17,8 +17,11 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Empresa {
 
+    /** Identificador único (0 si todavía no está guardada). */
     private long id;
+    /** Nombre de la empresa; no se puede repetir. */
     private String nombre;
+    /** Sector al que se dedica la empresa. */
     private String sector;
     /** URL del sitio web (puede estar vacía). */
     private String web;
@@ -37,6 +40,7 @@ public class Empresa {
         return otro instanceof Empresa empresa && id != 0 && id == empresa.id;
     }
 
+    /** @return código hash calculado a partir del ID, coherente con {@link #equals(Object)} */
     @Override
     public int hashCode() {
         return Long.hashCode(id);

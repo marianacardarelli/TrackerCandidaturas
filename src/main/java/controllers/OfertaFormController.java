@@ -42,6 +42,12 @@ public class OfertaFormController implements Initializable {
 
     private Oferta ofertaEditada;
 
+    /**
+     * Rellena los desplegables de empresa y estado y pone la fecha de hoy por defecto.
+     *
+     * @param location  ubicación del FXML (no se usa)
+     * @param resources recursos del FXML (no se usan)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cmbEmpresa.setItems(FXCollections.observableArrayList(empresaService.findAll()));
@@ -50,11 +56,16 @@ public class OfertaFormController implements Initializable {
         dpFecha.setValue(LocalDate.now());
     }
 
+    /** Cierra la ventana sin guardar nada. */
     @FXML
     private void cancelar() {
         cerrar();
     }
 
+    /**
+     * Guarda la oferta (alta o edición) y cierra la ventana. Si los datos no son
+     * válidos, muestra un aviso con el motivo y deja la ventana abierta.
+     */
     @FXML
     private void guardarOferta() {
         Oferta oferta = ofertaEditada == null ? new Oferta() : ofertaEditada;
@@ -80,18 +91,32 @@ public class OfertaFormController implements Initializable {
         }
         cerrar();
     }
+
+    /**
+     * Lee el salario escrito en el formulario. Acepta coma o punto decimal.
+     *
+     * @return el salario, o {@code null} si el campo está vacío
+     * @throws NumberFormatException si el texto no es un número
+     */
     private Double leerSalario() {
         String texto = txtSalario.getText().trim();
         return texto.isEmpty() ? null : Double.valueOf(texto.replace(',', '.'));
     }
 
+    /** Cierra la ventana en la que está el formulario. */
     private void cerrar() {
         ((Stage) txtTitulo.getScene().getWindow()).close();
     }
 
+    /**
+     * Muestra un aviso con el mensaje indicado.
+     *
+     * @param mensaje texto del aviso
+     */
     private void mostrarAviso(String mensaje) {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
     }
+
     /**
      * Prepara el formulario para editar una oferta existente.
      * @param oferta oferta cuyos datos se muestran

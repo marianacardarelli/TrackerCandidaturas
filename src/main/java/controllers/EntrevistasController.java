@@ -43,16 +43,6 @@ public class EntrevistasController implements Initializable {
     private TableColumn<Entrevista, String> colResultado;
     @FXML
     private ComboBox<String> cmbResultado;
-    @FXML
-    private Button btnNueva;
-    @FXML
-    private Button btnEditar;
-    @FXML
-    private Button btnBorrar;
-    @FXML
-    private Button btnCandidaturas;
-    @FXML
-    private Button btnEmpresas;
 
     /**
      * Enlaza las columnas con los datos de {@link Entrevista}, rellena el filtro
@@ -149,11 +139,21 @@ public class EntrevistasController implements Initializable {
         new Alert(Alert.AlertType.WARNING, mensaje, ButtonType.OK).showAndWait();
     }
 
+    /**
+     * Cambia a la pantalla del listado de empresas.
+     *
+     * @param evento evento del botón, para localizar la ventana actual
+     */
     @FXML
     private void empresa(ActionEvent evento) {
         NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/empresas-view.fxml");
     }
 
+    /**
+     * Cambia a la pantalla del listado de ofertas.
+     *
+     * @param evento evento del botón, para localizar la ventana actual
+     */
     @FXML
     private void candidatura(ActionEvent evento) {
         NavigateTo.cambiarPantalla((Node) evento.getSource(), "/views/ofertas-view.fxml");

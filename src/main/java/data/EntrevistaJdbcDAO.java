@@ -149,6 +149,10 @@ public class EntrevistaJdbcDAO implements DAO<Entrevista> {
 
     /**
      * Rellena los cinco parámetros comunes del insert y del update.
+     *
+     * @param pst        sentencia a rellenar
+     * @param entrevista entrevista de la que se toman los datos
+     * @throws SQLException si falla la asignación de algún parámetro
      */
     private static void rellenar(PreparedStatement pst, Entrevista entrevista) throws SQLException {
         pst.setLong(1, entrevista.getOferta().getId());

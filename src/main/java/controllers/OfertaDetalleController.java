@@ -47,6 +47,12 @@ public class OfertaDetalleController implements Initializable {
 
     private final EntrevistaService entrevistaService = Contexto.getEntrevistaService();
 
+    /**
+     * Enlaza las columnas de la tabla de entrevistas con los datos de {@link Entrevista}.
+     *
+     * @param location  ubicación del FXML (no se usa)
+     * @param resources recursos del FXML (no se usan)
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         colFechaEntrevista.setCellValueFactory(new PropertyValueFactory<>("fecha"));

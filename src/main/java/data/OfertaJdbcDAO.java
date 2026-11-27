@@ -121,6 +121,10 @@ public class OfertaJdbcDAO implements DAO<Oferta> {
 
     /**
      * Rellena los ocho parámetros comunes del insert y del update.
+     *
+     * @param pst    sentencia a rellenar
+     * @param oferta oferta de la que se toman los datos
+     * @throws SQLException si falla la asignación de algún parámetro
      */
     private static void rellenar(PreparedStatement pst, Oferta oferta) throws SQLException {
         pst.setLong(1, oferta.getEmpresa().getId());

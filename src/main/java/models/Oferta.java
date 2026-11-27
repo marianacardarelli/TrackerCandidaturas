@@ -63,6 +63,7 @@ public class Oferta {
         return empresa == null ? "" : empresa.getNombre();
     }
 
+    /** @return texto con el formato "id | título | empresa | estado | fecha", que es lo que muestran los desplegables */
     @Override
     public String toString() {
         String fecha = fechaPostulacion == null ? "" : fechaPostulacion.format(FORMATO_FECHA);

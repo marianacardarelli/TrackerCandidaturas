@@ -22,7 +22,6 @@ public class EntrevistaFormController implements Initializable {
     private final OfertaService ofertaService = Contexto.getOfertaService();
 
     private Entrevista entrevista;
-
     @FXML
     private ComboBox<Oferta> cmbOferta;
     @FXML
@@ -33,8 +32,6 @@ public class EntrevistaFormController implements Initializable {
     private ComboBox<String> cmbResultado;
     @FXML
     private Button btnGuardar;
-    @FXML
-    private Button btnCancelar;
     @FXML
     private TextArea txtNotas;
     @FXML

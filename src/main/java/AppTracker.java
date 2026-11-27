@@ -11,6 +11,12 @@ import java.io.IOException;
  */
 public class AppTracker extends Application {
 
+    /**
+     * Crea las tablas y los datos iniciales si hace falta y muestra la pantalla de ofertas.
+     *
+     * @param stage ventana principal que proporciona JavaFX
+     * @throws IOException si no se puede cargar el .fxml de la pantalla de ofertas
+     */
     @Override
     public void start(Stage stage) throws IOException {
         DataBaseInitializer.initialize(DataSourceFactory.getDataSource());

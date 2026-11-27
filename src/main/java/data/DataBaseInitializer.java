@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
  */
 public class DataBaseInitializer {
 
+    /** No se instancia: solo tiene métodos estáticos. */
     private DataBaseInitializer() {
     }
 
@@ -51,6 +52,14 @@ public class DataBaseInitializer {
         }
     }
 
+    /**
+     * Lee un script SQL de la carpeta de recursos y ejecuta una a una sus sentencias,
+     * separadas por {@code ;}.
+     *
+     * @param ds           origen de datos de la base de datos
+     * @param resourceName nombre del script dentro de resources
+     * @throws RuntimeException si no se encuentra el script o falla alguna sentencia
+     */
     private static void executeScript(DataSource ds, String resourceName) {
         try (InputStream is = DataBaseInitializer.class.getClassLoader().getResourceAsStream(resourceName)) {
             if (is == null) {

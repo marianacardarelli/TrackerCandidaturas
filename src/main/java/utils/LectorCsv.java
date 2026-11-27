@@ -19,9 +19,12 @@ import java.util.List;
  */
 public final class LectorCsv {
 
+    /** Separador de columnas del CSV. */
     private static final String SEPARADOR = ";";
+    /** Número de columnas que debe tener cada línea. */
     private static final int COLUMNAS = 7;
 
+    /** No se instancia: solo tiene métodos estáticos. */
     private LectorCsv() {
     }
 
@@ -56,6 +59,14 @@ public final class LectorCsv {
         return ofertas;
     }
 
+    /**
+     * Convierte una línea del CSV en una {@link Oferta}. El id de la línea se ignora.
+     *
+     * @param linea       línea del archivo
+     * @param numeroLinea número de la línea, para indicarlo en los errores
+     * @return la oferta leída, con la empresa solo con su nombre
+     * @throws IllegalArgumentException si no tiene {@link #COLUMNAS} columnas o la fecha no es válida
+     */
     private static Oferta convertir(String linea, int numeroLinea) {
         String[] columnas = linea.split(SEPARADOR, -1);
         if (columnas.length != COLUMNAS) {

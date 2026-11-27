@@ -7,9 +7,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-
+/**
+ * Reglas de negocio de las entrevistas: valida los datos antes de guardarlos
+ * y permite consultar las entrevistas de una oferta.
+ */
 public class EntrevistaService {
 
+    /** DAO con el que se leen y guardan las entrevistas. */
     private final DAO<Entrevista> dao;
 
     /**

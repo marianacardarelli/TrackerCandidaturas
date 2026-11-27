@@ -37,6 +37,7 @@ public class Entrevista {
     /** Resultado de la entrevista: uno de {@link #RESULTADOS}. */
     private String resultado;
 
+    /** @return texto con el formato "fecha | tipo | resultado", que es lo que muestran los desplegables */
     @Override
     public String toString() {
         String fechaTexto = fecha == null ? "" : fecha.format(Oferta.FORMATO_FECHA);

@@ -17,8 +17,10 @@ import java.util.List;
  */
 public class ImportacionJdbcDAO {
 
+    /** Sector que se asigna a las empresas creadas durante la importación. */
     private static final String SECTOR_POR_DEFECTO = "Sin especificar";
 
+    /** Origen de datos del que se obtienen las conexiones. */
     private final DataSource ds;
 
     /**
@@ -61,6 +63,15 @@ public class ImportacionJdbcDAO {
         }
     }
 
+    /**
+     * Devuelve el id de la empresa con ese nombre y, si no existe, la crea
+     * con el sector {@link #SECTOR_POR_DEFECTO}.
+     *
+     * @param conn   conexión de la transacción en curso
+     * @param nombre nombre de la empresa
+     * @return id de la empresa existente o recién creada
+     * @throws SQLException si falla alguna consulta
+     */
     private long buscarOCrearEmpresa(Connection conn, String nombre) throws SQLException {
         String consulta = "select id from Empresa where nombre = ?";
         try (PreparedStatement pst = conn.prepareStatement(consulta)) {
@@ -83,6 +94,15 @@ public class ImportacionJdbcDAO {
         }
     }
 
+    /**
+     * Comprueba si ya hay una oferta con ese título en esa empresa.
+     *
+     * @param conn      conexión de la transacción en curso
+     * @param titulo    título de la oferta
+     * @param idEmpresa id de la empresa
+     * @return {@code true} si la oferta ya existe
+     * @throws SQLException si falla la consulta
+     */
     private boolean existeOferta(Connection conn, String titulo, long idEmpresa) throws SQLException {
         String consulta = "select count(*) from Oferta where titulo = ? and id_empresa = ?";
         try (PreparedStatement pst = conn.prepareStatement(consulta)) {
@@ -95,6 +115,14 @@ public class ImportacionJdbcDAO {
         }
     }
 
+    /**
+     * Inserta una oferta asociada a la empresa indicada.
+     *
+     * @param conn      conexión de la transacción en curso
+     * @param oferta    oferta a insertar
+     * @param idEmpresa id de la empresa de la oferta
+     * @throws SQLException si falla la inserción
+     */
     private void insertarOferta(Connection conn, Oferta oferta, long idEmpresa) throws SQLException {
         String insercion = "insert into Oferta (id_empresa, titulo, estado, fecha_postulacion, enlace, notas) "
                 + "values (?, ?, ?, ?, ?, ?)";

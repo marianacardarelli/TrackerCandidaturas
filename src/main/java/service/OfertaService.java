@@ -81,11 +81,12 @@ public class OfertaService {
     }
 
     /**
-     * Filtra las ofertas combinando empresa, estado y salario mínimo.
+     * Filtra las ofertas combinando empresa, estado, salario mínimo y fecha.
      * Los filtros nulos o vacíos se ignoran.
      * @param empresa texto contenido en el nombre de la empresa
      * @param estado estado exacto de la oferta
      * @param salarioMinimo salario mínimo
+     * @param desde fecha de postulación mínima (incluida)
      * @return ofertas que cumplen todos los filtros indicados
      */
     public List<Oferta> filtrar(String empresa, String estado, Double salarioMinimo, LocalDate desde) {
@@ -100,6 +101,12 @@ public class OfertaService {
                 .toList();
     }
 
+    /**
+     * Comprueba que la oferta tiene título, empresa, estado válido y fecha,
+     * y que el salario, si se indica, no es negativo.
+     * @param oferta oferta a validar
+     * @throws IllegalArgumentException si algún dato falta o no es válido
+     */
     private void validar(Oferta oferta) {
         if (oferta.getTitulo() == null || oferta.getTitulo().isBlank()) {
             throw new IllegalArgumentException("El título es obligatorio.");

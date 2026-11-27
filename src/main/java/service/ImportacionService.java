@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ImportacionService {
 
+    /** DAO con el que se guardan las candidaturas importadas. */
     private final ImportacionJdbcDAO dao;
 
     /**
@@ -38,6 +39,13 @@ public class ImportacionService {
         return dao.importar(ofertas);
     }
 
+    /**
+     * Comprueba que la candidatura tiene título, empresa y un estado válido.
+     *
+     * @param oferta   candidatura a validar
+     * @param posicion posición de la candidatura en el CSV, para indicarla en el error
+     * @throws IllegalArgumentException si algún dato falta o no es válido
+     */
     private void validar(Oferta oferta, int posicion) {
         if (oferta.getTitulo().isBlank()) {
             throw new IllegalArgumentException("Candidatura " + posicion + ": el título es obligatorio.");

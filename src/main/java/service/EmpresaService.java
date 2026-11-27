@@ -18,6 +18,7 @@ public class EmpresaService {
      */
     private static final int LONGITUD_MAXIMA_NOMBRE = 100;
 
+    /** DAO con el que se leen y guardan las empresas. */
     private final DAO<Empresa> dao;
 
     /**
@@ -97,6 +98,12 @@ public class EmpresaService {
         }
     }
 
+    /**
+     * Comprueba que la empresa tiene nombre y sector, y que el nombre no es demasiado largo.
+     *
+     * @param empresa empresa a validar
+     * @throws IllegalArgumentException si algún dato falta o no es válido
+     */
     private void validar(Empresa empresa) {
         if (empresa.getNombre() == null || empresa.getNombre().isBlank()) {
             throw new IllegalArgumentException("El nombre de la empresa es obligatorio.");
@@ -110,6 +117,12 @@ public class EmpresaService {
         }
     }
 
+    /**
+     * Convierte el error de nombre repetido de la base de datos en un mensaje comprensible.
+     *
+     * @param e excepción lanzada por el DAO
+     * @return una {@link IllegalArgumentException} si el nombre ya existe, o la misma excepción si no
+     */
     private RuntimeException traducirNombreDuplicado(RuntimeException e) {
         if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
             return new IllegalArgumentException("Ya existe una empresa con ese nombre.");
